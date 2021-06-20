@@ -3,7 +3,7 @@
 import json
 
 
-def test_add_user(test_app, test_database):
+def test_add_users(test_app, test_database):
     client = test_app.test_client()
     resp = client.post(
         '/users',
@@ -11,7 +11,7 @@ def test_add_user(test_app, test_database):
             'username': 'ivan',
             'email': 'nabei@bitcom.info'
         }),
-        context_type='application/json',
+        content_type='application/json',
     )
     data = json.loads(resp.data.decode())
     assert resp.status_code == 201
