@@ -1,6 +1,5 @@
 # src/__init__.py
 import os
-
 from flask import Flask, jsonify
 from flask_restx import Resource, Api
 from flask_sqlalchemy import SQLAlchemy
