@@ -19,6 +19,12 @@ user = api.model('User', {
 
 
 class UsersList(Resource):
+
+    @api.marshal_with(user, as_list=True)
+    def get(self):
+        return User.query.all(), 200
+
+
     @api.expect(user, validate=True)
     def post(self):
         post_data = request.get_json()
@@ -34,7 +40,7 @@ class UsersList(Resource):
         db.session.add(User(username=username, email=email))
         db.session.commit()
 
-        response_object['message'] = f'{email} was added!'
+        response_object['message'] = f' {email} was added!'
         return response_object, 201
 
 
@@ -45,7 +51,6 @@ class Users(Resource):
         if not user:
             api.abort(404, f"User {user_id} does not exist")
         return user, 200
-
 
 
 api.add_resource(UsersList, '/users')
