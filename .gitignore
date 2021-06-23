@@ -1,2 +1,4 @@
 __piache__
 env
+.coverage
+htmlcov/
